@@ -5,14 +5,16 @@
 #!/bin/bash
 
 # Install OpenJDK 17 JRE Headless
-sudo apt install openjdk-17-jre-headless -y
+sudo apt update
+sudo apt install fontconfig openjdk-17-jre -y
+java -version
 
 # Download Jenkins GPG key
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 
 # Add Jenkins repository to package manager sources
-echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 
